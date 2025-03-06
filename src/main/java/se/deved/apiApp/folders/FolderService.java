@@ -1,4 +1,4 @@
-package se.deved.apiApp.Folder;
+package se.deved.apiApp.folders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,17 @@ public class FolderService {
     private FolderRepository folderRepository;
 
     @Transactional
-    public FolderDto createFolder(String name) {
-        FolderDto folder = new FolderDto();
+    public FolderEntity createFolder(String name) {
+        FolderEntity folder = new FolderEntity();
         folder.setName(name);
         return folderRepository.save(folder);
     }
 
-    public List<FolderDto> getAllFolders() {
+    public List<FolderEntity> getAllFolders() {
         return folderRepository.findAll();
     }
 
-    public FolderDto getFolderById(Long id) {
+    public FolderEntity getFolderById(Long id) {
         return folderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Folder not found: " + id));
     }

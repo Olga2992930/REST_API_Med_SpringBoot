@@ -1,7 +1,7 @@
 package se.deved.apiApp.File;
 
 import jakarta.persistence.*;
-import se.deved.apiApp.Folder.FolderDto;
+import se.deved.apiApp.folders.FolderEntity;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +20,7 @@ public class FileDto {
 
     @ManyToOne
     @JoinColumn(name = "folder_id")
-    private FolderDto folder;
+    private FolderEntity folder;
 
     private LocalDateTime createdAt;
 
@@ -35,7 +35,7 @@ public class FileDto {
     public void setName(String name) { this.name = name; }
     public byte[] getContent() { return content; }
     public void setContent(byte[] content) { this.content = content; }
-    public FolderDto getFolder() { return folder; }
-    public void setFolder(FolderDto folder) { this.folder = folder; }
+    public FolderEntity getFolder() { return folder; }
+    public void setFolder(FolderEntity folder) { this.folder = folder; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 }

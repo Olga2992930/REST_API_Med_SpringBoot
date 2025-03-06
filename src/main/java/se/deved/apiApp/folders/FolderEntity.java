@@ -1,4 +1,4 @@
-package se.deved.apiApp.Folder;
+package se.deved.apiApp.folders;
 
 import jakarta.persistence.*;
 import se.deved.apiApp.File.FileDto;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "folders")
-public class FolderDto {
+public class FolderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class FolderDto {
 
     private LocalDateTime createdAt;
 
-    public FolderDto() {
+    public FolderEntity() {
         this.createdAt = LocalDateTime.now();
     }
 

@@ -1,4 +1,4 @@
-package se.deved.apiApp.user;
+package se.deved.apiApp.users;
 
 public class UserRepository {
 }

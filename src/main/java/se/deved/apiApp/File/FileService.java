@@ -3,7 +3,7 @@ package se.deved.apiApp.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import se.deved.apiApp.Folder.FolderRepository;
+import se.deved.apiApp.folders.FolderRepository;
 import java.util.Base64;
 import java.util.List;
 

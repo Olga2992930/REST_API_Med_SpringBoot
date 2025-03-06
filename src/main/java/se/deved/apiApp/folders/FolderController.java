@@ -1,4 +1,4 @@
-package se.deved.apiApp.Folder;
+package se.deved.apiApp.folders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +12,17 @@ public class FolderController {
     private FolderService folderService;
 
     @PostMapping
-    public ResponseEntity<FolderDto> createFolder(@RequestParam String name) {
+    public ResponseEntity<FolderEntity> createFolder(@RequestParam String name) {
         return ResponseEntity.ok(folderService.createFolder(name));
     }
 
     @GetMapping
-    public ResponseEntity<List<FolderDto>> getAllFolders() {
+    public ResponseEntity<List<FolderEntity>> getAllFolders() {
         return ResponseEntity.ok(folderService.getAllFolders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FolderDto> getFolderById(@PathVariable Long id) {
+    public ResponseEntity<FolderEntity> getFolderById(@PathVariable Long id) {
         return ResponseEntity.ok(folderService.getFolderById(id));
     }
 
