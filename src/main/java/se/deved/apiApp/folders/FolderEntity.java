@@ -2,6 +2,7 @@ package se.deved.apiApp.folders;
 
 import jakarta.persistence.*;
 import se.deved.apiApp.File.FileDto;
+import se.deved.apiApp.users.UserEntity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,10 @@ public class FolderEntity {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity owner;
 
     @OneToMany(mappedBy = "folder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FileDto> files = new ArrayList<>();

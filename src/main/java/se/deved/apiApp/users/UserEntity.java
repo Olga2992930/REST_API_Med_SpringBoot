@@ -13,6 +13,7 @@ public class UserEntity {
     private long id;
 
     private String username;
+    private String oidcId;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<FolderEntity> folders;

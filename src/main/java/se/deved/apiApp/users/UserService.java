@@ -11,7 +11,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     public Optional<UserEntity> findByUsername(String username) {
-        return userRepository.findByUserName(username);
+        return userRepository.findByUsername(username);
     }
 }
 
