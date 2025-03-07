@@ -11,19 +11,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth ->auth
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/register", "/login").permitAll()
                         .requestMatchers("/api/files/**", "api/folders/**").authenticated()
                         .anyRequest().authenticated()
                 )
-                .oauth2Login((oauth2 ->oauth2
+                .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
-                        .defaultSuccessUrl("/api/users/me",true)
+                        .defaultSuccessUrl("/api/users/me", true)
                 )
-                        .logout(logout -> logout.logoutSuccessUrl("/").permitAll());
-                return http.build();
+                .logout(logout -> logout.logoutSuccessUrl("/").permitAll());
+
+        return http.build();
     }
-}
+    }
+
 
 
 
