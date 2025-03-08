@@ -1,4 +1,4 @@
-package se.deved.apiApp.File;
+package se.deved.apiApp.file;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ public class FileService {
     private FolderRepository folderRepository;
 
     @Transactional
-    public FileDto uploadFile(String name, String base64Content, Long folderId) {
+    public FileEntity uploadFile(String name, String base64Content, Long folderId) {
         var folder = folderRepository.findById(folderId)
                 .orElseThrow(() -> new RuntimeException("Folder not found: " + folderId));
 
-        var file = new FileDto();
+        var file = new FileEntity();
         file.setName(name);
         file.setContent(Base64.getDecoder().decode(base64Content));
         file.setFolder(folder);
@@ -38,7 +38,7 @@ public class FileService {
         fileRepository.deleteById(fileId);
     }
 
-    public List<FileDto> getFilesInFolder(Long folderId) {
+    public List<FileEntity> getFilesInFolder(Long folderId) {
         var folder = folderRepository.findById(folderId)
                 .orElseThrow(() -> new RuntimeException("Folder not found: " + folderId));
         return fileRepository.findByFolder(folder);

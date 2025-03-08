@@ -1,7 +1,7 @@
 package se.deved.apiApp.folders;
 
 import jakarta.persistence.*;
-import se.deved.apiApp.File.FileDto;
+import se.deved.apiApp.file.FileEntity;
 import se.deved.apiApp.users.UserEntity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class FolderEntity {
     private UserEntity owner;
 
     @OneToMany(mappedBy = "folder", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<FileDto> files = new ArrayList<>();
+    private List<FileEntity> files = new ArrayList<>();
 
     private LocalDateTime createdAt;
 
@@ -35,12 +35,12 @@ public class FolderEntity {
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public List<FileDto> getFiles() { return files; }
-    public void addFile(FileDto file) {
+    public List<FileEntity> getFiles() { return files; }
+    public void addFile(FileEntity file) {
         files.add(file);
         file.setFolder(this);
     }
-    public void removeFile(FileDto file) {
+    public void removeFile(FileEntity file) {
         files.remove(file);
         file.setFolder(null);
     }

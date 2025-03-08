@@ -1,4 +1,4 @@
-package se.deved.apiApp.File;
+package se.deved.apiApp.file;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ public class FileController {
     private FileService fileService;
 
     @PostMapping("/{folderId}")
-    public ResponseEntity<FileDto> uploadFile(
+    public ResponseEntity<FileEntity> uploadFile(
             @PathVariable Long folderId,
             @RequestParam String name,
             @RequestBody String base64Content) {
@@ -31,7 +31,7 @@ public class FileController {
     }
 
     @GetMapping("/folder/{folderId}")
-    public ResponseEntity<List<FileDto>> getFilesInFolder(@PathVariable Long folderId) {
+    public ResponseEntity<List<FileEntity>> getFilesInFolder(@PathVariable Long folderId) {
         return ResponseEntity.ok(fileService.getFilesInFolder(folderId));
     }
 }
