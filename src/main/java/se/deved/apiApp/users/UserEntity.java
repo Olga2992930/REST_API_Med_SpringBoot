@@ -7,15 +7,18 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    private String username;
-    private String oidcId;
+    @Column(unique = true, nullable = false)
+    private String oidcId; // GitHub ID
+
+    @Column(unique = true, nullable = false)
+    private String username; // GitHub användarnamn
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<FolderEntity> folders;
-
 }

@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping("/me")
-    public ResponseEntity<OAuth2User> getCurrentUser(@AuthenticationPrincipal OAuth2User user) {
-        return ResponseEntity.ok(user);
+    public ResponseEntity<UserEntity> getCurrentUser(@AuthenticationPrincipal OAuth2User oAuth2User) {
+        if (oAuth2User == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        String githubId = oAuth2User.getAttribute("id").toString();
+        return userRepository.findByOidcId(githubId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(404).build());
     }
 }
+
